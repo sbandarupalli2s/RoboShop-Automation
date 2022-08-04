@@ -1,0 +1,1 @@
+# RabbitMQ is a messaging Queue which is used by some components of the applications.
