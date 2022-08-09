@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DevOps-project1" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Learn-Shell" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyProject-RoboShop" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyProject-RoboShop/cart" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyProject-RoboShop/catalogue" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyProject-RoboShop/dispatch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyProject-RoboShop/frontend" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyProject-RoboShop/mongodb" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyProject-RoboShop/mysql" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyProject-RoboShop/payment" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyProject-RoboShop/rabbitmq" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyProject-RoboShop/redis" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyProject-RoboShop/shipping" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyProject-RoboShop/user" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/RoboShop-Automation" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/RoboShop-Code" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/roboshop-devops-project" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/roboshop-devops-project/frontend" vcs="Git" />
+  </component>
+</project>
