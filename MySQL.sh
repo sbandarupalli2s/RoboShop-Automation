@@ -1,20 +1,21 @@
 
 set -e
 
+echo "setting nodejs repos"
 curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo &>>/tmp/mysql.log
 
+echo "Installing mysql "
 yum install mysql-community-server -y &>>/tmp/mysql.log
 
-systemctl enable mysqld &>>/tmp/mysql.log
-systemctl start mysqld &>>/tmp/mysql.log
+DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
 
-grep temp /var/log/mysqld.log &>>/tmp/mysql.log
+echo "alter user 'root'@'localhost' identified with mysql_native_password by 'new_password' " | mysql -uroot -p$(DEFAULT_PASSWORD)
+systemctl enable mysqld
+systemctl start mysqld
 
-mysql_secure_installation &>>/tmp/mysql.log
+mysql -uroot -pRoboShop@1
 
-mysql -uroot -pRoboShop@1 &>>/tmp/mysql.log
-
-uninstall plugin validate_password; &>>/tmp/mysql.log
+#>uninstall plugin validate_password; &>>/tmp/mysql.log
 
 curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip" &>>/tmp/mysql.log
 
