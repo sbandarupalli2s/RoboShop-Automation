@@ -7,11 +7,12 @@ curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/robo
 echo "Installing mysql "
 yum install mysql-community-server -y &>>/tmp/mysql.log
 
+systemctl enable mysqld
+systemctl start mysqld
+
 DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
 
 echo "alter user 'root'@'localhost' identified with mysql_native_password by 'new_password' " | mysql -uroot -p$(DEFAULT_PASSWORD)
-systemctl enable mysqld
-systemctl start mysqld
 
 mysql -uroot -pRoboShop@1
 
