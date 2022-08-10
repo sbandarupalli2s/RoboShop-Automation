@@ -1,8 +1,12 @@
-set -e
 
 echo "setting nodejs repos"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/cart.log
-echo $?
+if [ $? == 0 ]
+then
+  echo -e "\e[32mSUCCESS\e[0"
+else
+  echo Both are not same
+fi
 
 echo "Installing NodeJS"
 yum install nodejs -y &>>/tmp/cart.log
