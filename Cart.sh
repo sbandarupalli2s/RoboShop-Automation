@@ -1,11 +1,10 @@
 
 echo "setting nodejs repos"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/cart.log
-if [ $? == 0 ]
-then
-  echo -e "\e[32mSUCCESS\e[0"
+if [ $? == 0 ]; then
+  echo -e "\e[32mSUCCESS\e[0m"
 else
-  echo Both are not same
+  echo -e "\e[31mSUCCESS\e[0m"
 fi
 
 echo "Installing NodeJS"
