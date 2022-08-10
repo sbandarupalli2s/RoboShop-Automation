@@ -1,8 +1,8 @@
 set -e
 echo "setting nodejs repos"
-curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo &>>/tmp/mysql.log
+curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo
 echo "Installing mysql "
-yum install mysql-community-server -y &>>/tmp/mysql.log
+yum install mysql-community-server -y
 
 systemctl enable mysqld
 systemctl start mysqld
