@@ -24,14 +24,13 @@ else
 fi
 
 echo "Downloading application content"
-curl -s -L -o /tmp/cart.zip "https://github.com/roboshop-devops-project/cart/archive/main.zip" &>>/tmp/cart.log
+curl -s -L -o /tmp/cart.zip "https://github.com/roboshop-devops-project/cart/archive/main.zip" && cd /home/roboshop &>>/tmp/cart.log
 if [ $? == 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
 fi
 
-cd /home/roboshop &>>/tmp/cart.log
 echo "Deleting the old application content"
 rm -rf cart &>>/tmp/cart.log
 if [ $? == 0 ]; then
@@ -41,15 +40,12 @@ else
 fi
 
 echo "Unzipping"
-unzip -o /tmp/cart.zip &>>/tmp/cart.log
+unzip -o /tmp/cart.zip &>>/tmp/cart.log && mv cart-main cart && cd cart &>>/tmp/cart.log
 if [ $? == 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
 fi
-
-mv cart-main cart &>>/tmp/cart.log
-cd cart
 
 echo "installing NodeJS dependencies"
 npm install &>>/tmp/cart.log
