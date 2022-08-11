@@ -10,7 +10,7 @@ status_check
 
 echo "Adding user"
 id roboshop &>>/tmp/cart.log
-if [$? != 0]; then
+if [ $? != 0 ]; then
   echo "adding user"
   adduser roboshop &>>/tmp/cart.log
   status_check
