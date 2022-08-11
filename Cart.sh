@@ -13,7 +13,7 @@ id roboshop &>>/tmp/cart.log
 if [ $? -ne 0 ]; then
   echo adding user
   useradd roboshop &>>/tmp/cart.log
-  status_check
+#  status_check
 fi
 
 useradd roboshop &>>/tmp/cart.log
