@@ -14,7 +14,7 @@ status_check
 cd /home/roboshop
 
 echo "unzipping the content"
-unzip /tmp/user.zip && mv user-main user && cd /home/roboshop/user &>>/tmp/user.log
+unzip -o /tmp/user.zip && mv user-main user && cd /home/roboshop/user &>>/tmp/user.log
 status_check
 
 echo "installing dependencies"
