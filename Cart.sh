@@ -8,7 +8,7 @@ echo "Installing NodeJS"
 yum install nodejs -y &>>/tmp/cart.log
 status_check
 
-echo "Adding user"
+echo "Checking user exists or not"
 id roboshop &>>/tmp/cart.log
 if [ $? != 0 ]; then
   echo "adding user"
