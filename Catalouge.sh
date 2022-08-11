@@ -1,6 +1,6 @@
 source Common.sh
 
-NodeJS
+NodeJS_install
 AddUsr
 
 #sudo su roboshop
