@@ -9,11 +9,11 @@ status_check() {
 
 NodeJS() {
   echo "setting nodejs repos"
-  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/cart.log
+  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/nodejs.log
   status_check
 
   echo "Installing NodeJS"
-  yum install nodejs -y &>>/tmp/cart.log
+  yum install nodejs -y &>>/tmp/nodejs.log
   status_check
 }
 
@@ -25,7 +25,7 @@ AddUsr() {
     status_check
   else
     echo adding user
-    useradd roboshop &>>/tmp/cart.log
+    useradd roboshop &>>/tmp/addusr.log
     status_check
   fi
 }
