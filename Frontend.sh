@@ -1,7 +1,6 @@
 #The frontend is the service in RobotShop to serve the web content over Nginx.
 set -e
 
-
 yum install nginx -y
 systemctl enable nginx
 systemctl start nginx
