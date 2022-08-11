@@ -12,7 +12,7 @@ echo "Checking user exists or not"
 id roboshop &>>/tmp/cart.log
 if [ $? -ne 0 ]; then
   echo "adding user"
-  adduser roboshop &>>/tmp/cart.log
+  useradd roboshop &>>/tmp/cart.log
   status_check
 fi
 
