@@ -1,12 +1,6 @@
 source Common.sh
 
-echo "setting nodejs repos"
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/cart.log
-status_check
-
-echo "Installing NodeJS"
-yum install nodejs -y &>>/tmp/cart.log
-status_check
+NodeJS
 
 echo "Checking user exists or not"
 id roboshop &>>/tmp/cart.log
