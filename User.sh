@@ -8,6 +8,11 @@ curl -s -L -o /tmp/user.zip "https://github.com/roboshop-devops-project/user/arc
 status_check
 
 cd /home/roboshop
+
+echo "Deleting the old application content"
+rm -rf cart &>>/tmp/cart.log
+status_check
+
 echo "unzipping the content"
 unzip /tmp/user.zip &>>/tmp/user.log
 status_check
