@@ -1,17 +1,29 @@
- set -e
- curl -sL https://rpm.nodesource.com/setup_lts.x | bash
- yum install nodejs -y
+source Common.sh
 
- useradd roboshop
+NodeJS_install
+AddUsr
 
- curl -s -L -o /tmp/user.zip "https://github.com/roboshop-devops-project/user/archive/main.zip"
- cd /home/roboshop
- unzip /tmp/user.zip
- mv user-main user
- cd /home/roboshop/user
- npm install
+echo "Downloading application USER content"
+curl -s -L -o /tmp/user.zip "https://github.com/roboshop-devops-project/user/archive/main.zip" &>>/tmp/user.log
+status_check
 
- mv /home/roboshop/user/systemd.service /etc/systemd/system/user.service
- systemctl daemon-reload
- systemctl start user
- systemctl enable user
+cd /home/roboshop
+echo "unzipping the content"
+unzip /tmp/user.zip &>>/tmp/user.log
+status_check
+
+mv user-main user
+cd /home/roboshop/user
+
+echo "installing dependencies"
+npm install &>>/tmp/user.log
+status_check
+
+echo "configuring cart systemd service"
+mv /home/roboshop/user/systemd.service /etc/systemd/system/user.service
+systemctl daemon-reload &>>/tmp/user.log
+status_check
+
+echo "starting USER service"
+systemctl start user && systemctl enable user &>>/tmp/user.log
+status_check
