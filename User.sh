@@ -14,8 +14,10 @@ status_check
 cd /home/roboshop
 
 echo "unzipping the content"
-unzip -o /tmp/user.zip && mv user-main user && cd /home/roboshop/user &>>/tmp/user.log
+unzip -o /tmp/user.zip &>>/tmp/user.log
 status_check
+
+mv user-main user && cd /home/roboshop/user &>>/tmp/user.log
 
 echo "installing dependencies"
 npm install &>>/tmp/user.log
