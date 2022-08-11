@@ -1,18 +1,22 @@
 #The frontend is the service in RobotShop to serve the web content over Nginx.
 set -e
+echo "Installing nginx..."
+yum install nginx -y &>>/tmp/frontend.log
+status_check
 
-yum install nginx -y
-systemctl enable nginx
-systemctl start nginx
+echo " starting nginx..."
+systemctl enable nginx && systemctl start nginx &>>/tmp/frontend.log
+status_check
 
-curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
+echo "collecting the data..."
+curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" &>>/tmp/frontend.log
 
 cd /usr/share/nginx/html
 rm -rf *
-unzip /tmp/frontend.zip
-mv frontend-main/static/* .
-mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf
 
-systemctl restart nginx
+echo "unzipping..."
+unzip /tmp/frontend.zip &>>/tmp/frontend.log
+mv frontend-main/static/* . && mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf
 
-echo "Completed"
+echo "restarting nginx.."
+systemctl restart nginx &>>/tmp/frontend.log
