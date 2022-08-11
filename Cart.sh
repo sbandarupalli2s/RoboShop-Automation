@@ -10,18 +10,14 @@ status_check
 
 echo "Checking user exists or not"
 id roboshop &>>/tmp/cart.log
-echo $?
 if [ $? -eq 0 ]; then
   echo "user already exists"
-  exit 0
+  status_check
 else
   echo adding user
   useradd roboshop &>>/tmp/cart.log
   status_check
 fi
-
-useradd roboshop &>>/tmp/cart.log
-status_check
 
 echo "Downloading application content"
 curl -s -L -o /tmp/cart.zip "https://github.com/roboshop-devops-project/cart/archive/main.zip" && cd /home/roboshop &>>/tmp/cart.log
