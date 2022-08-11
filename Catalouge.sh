@@ -4,7 +4,7 @@ NodeJS
 AddUsr
 
 echo "Downloading the code for catalogue"
-curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" cd /home/roboshop/catalogue
+curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>/tmp/catalogue.log
 status_check
 
 cd /home/roboshop
