@@ -17,10 +17,11 @@ echo "unzipping the content"
 unzip -o /tmp/user.zip &>>/tmp/user.log
 status_check
 
-mv user-main user && cd /home/roboshop/user &>>/tmp/user.log
+mv user-main user
+cd /home/roboshop/user
 
 echo "installing dependencies"
-npm install &>>/tmp/user.log
+#npm install &>>/tmp/user.log
 status_check
 
 echo "configuring cart systemd service"
