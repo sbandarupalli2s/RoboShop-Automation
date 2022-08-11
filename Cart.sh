@@ -1,17 +1,7 @@
 source Common.sh
 
 NodeJS
-
-echo "Checking user exists or not"
-id roboshop &>>/tmp/cart.log
-if [ $? -eq 0 ]; then
-  echo "user already exists"
-  status_check
-else
-  echo adding user
-  useradd roboshop &>>/tmp/cart.log
-  status_check
-fi
+AddUsr
 
 echo "Downloading application content"
 curl -s -L -o /tmp/cart.zip "https://github.com/roboshop-devops-project/cart/archive/main.zip" && cd /home/roboshop &>>/tmp/cart.log

@@ -16,3 +16,16 @@ NodeJS() {
   yum install nodejs -y &>>/tmp/cart.log
   status_check
 }
+
+AddUsr() {
+  echo "Checking user exists or not"
+  id roboshop &>>/tmp/cart.log
+  if [ $? -eq 0 ]; then
+    echo "user already exists"
+    status_check
+  else
+    echo adding user
+    useradd roboshop &>>/tmp/cart.log
+    status_check
+  fi
+}
