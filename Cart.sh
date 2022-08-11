@@ -11,7 +11,9 @@ status_check
 echo "Checking user exists or not"
 id roboshop &>>/tmp/cart.log
 echo checking....
-if [ $? -ne 0 ]; then
+if [ $? == 0 ]; then
+  echo user alredy exists
+else
   echo "adding user"
   useradd roboshop &>>/tmp/cart.log
   status_check
