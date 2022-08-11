@@ -11,13 +11,17 @@ status_check
 
 echo "collecting the data..."
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" &>>/tmp/frontend.log
+status_check
 
 cd /usr/share/nginx/html
 rm -rf *
 
 echo "unzipping..."
 unzip /tmp/frontend.zip &>>/tmp/frontend.log
+status_check
+
 mv frontend-main/static/* . && mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf
 
 echo "restarting nginx.."
 systemctl restart nginx &>>/tmp/frontend.log
+status_check
