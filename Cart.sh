@@ -14,6 +14,7 @@ echo checking....
 if [ $? -ne 0 ]; then
   echo adding user
   useradd roboshop &>>/tmp/cart.log
+  echo step2
   status_check
 fi
 
