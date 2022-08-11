@@ -7,13 +7,23 @@ status_check() {
   fi
 }
 
-NodeJS() {
+NodeJS_install() {
   echo "setting nodejs repos"
-  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/nodejs.log
+  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/nodejs_installation.log
   status_check
 
   echo "Installing NodeJS"
   yum install nodejs -y &>>/tmp/nodejs.log
+  status_check
+}
+
+Nginx_install() {
+  echo "Installing nginx..."
+  yum install nginx -y &>>/tmp/nginx_installation.log
+  status_check
+
+  echo " starting nginx..."
+  systemctl enable nginx && systemctl start nginx &>>/tmp/nginx_installation.log
   status_check
 }
 
