@@ -21,7 +21,7 @@ mv user-main user
 cd /home/roboshop/user
 
 echo "installing dependencies"
-#npm install &>>/tmp/user.log
+npm install &>>/tmp/user.log
 status_check
 
 echo "configuring cart systemd service"
