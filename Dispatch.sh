@@ -18,6 +18,8 @@ status_check
 
 cd /home/roboshop
 mv dispatch-main dispatch && cd dispatch
+
+echo "init"
 go mod init dispatch
 go get
 go build
