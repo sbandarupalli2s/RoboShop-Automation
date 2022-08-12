@@ -1,11 +1,23 @@
-set -e
+source Common.sh
 
- yum install golang -y
+Golang_install
+AddUsr
 
- useradd roboshop
+echo "Downloading the code for dispatch"
+curl -L -s -o /tmp/dispatch.zip https://github.com/roboshop-devops-project/dispatch/archive/refs/heads/main.zip &>>/tmp/dispatch.log
+status_check
 
- curl -L -s -o /tmp/dispatch.zip https://github.com/roboshop-devops-project/dispatch/archive/refs/heads/main.zip
- unzip /tmp/dispatch.zip
+cd /home/roboshop
+rm -rf catalogue
+
+
+
+
+unzip /tmp/dispatch.zip &>>/tmp/catalogue.log
+status_check
+
+
+
  mv dispatch-main dispatch
  cd dispatch
  go mod init dispatch

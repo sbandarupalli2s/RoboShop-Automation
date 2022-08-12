@@ -7,6 +7,10 @@ status_check() {
   fi
 }
 
+Golang_install() {
+   yum install golang -y &>>/tmp/golang.log
+}
+
 NodeJS_install() {
   echo "setting nodejs repos"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/nodejs_installation.log
