@@ -8,23 +8,20 @@ curl -L -s -o /tmp/dispatch.zip https://github.com/roboshop-devops-project/dispa
 status_check
 
 cd /home/roboshop
+echo "deleting the old content"
 rm -rf catalogue
+status_check
 
-
-
-
+echo "unzipping the file"
 unzip /tmp/dispatch.zip &>>/tmp/catalogue.log
 status_check
 
+mv dispatch-main dispatch && cd dispatch
+go mod init dispatch
+go get
+go build
 
-
- mv dispatch-main dispatch
- cd dispatch
- go mod init dispatch
- go get
- go build
-
- mv /home/roboshop/dispatch/systemd.service /etc/systemd/system/dispatch.service
- systemctl daemon-reload
- systemctl enable dispatch 
- systemctl start dispatch
+mv /home/roboshop/dispatch/systemd.service /etc/systemd/system/dispatch.service
+systemctl daemon-reload
+systemctl enable dispatch
+systemctl start dispatch
