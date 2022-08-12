@@ -8,7 +8,9 @@ status_check() {
 }
 
 Golang_install() {
-   yum install golang -y &>>/tmp/golang.log
+  echo "installing golang...."
+  yum install golang -y &>>/tmp/golang.log
+  status_check
 }
 
 NodeJS_install() {
