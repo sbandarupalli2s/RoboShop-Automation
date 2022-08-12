@@ -11,6 +11,7 @@ status_check
 
 #cd /home/roboshop
 rm -rf catalogue
+echo "unzipping the file"
 unzip /tmp/catalogue.zip &>>/tmp/catalogue.log
 status_check
 
