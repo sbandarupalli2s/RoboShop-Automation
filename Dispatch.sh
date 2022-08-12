@@ -7,7 +7,6 @@ echo "Downloading the code for dispatch"
 curl -L -s -o /tmp/dispatch.zip https://github.com/roboshop-devops-project/dispatch/archive/refs/heads/main.zip &>>/tmp/dispatch.log
 status_check
 
-cd /home/roboshop
 echo "deleting the old content"
 rm -rf catalogue
 status_check
@@ -17,6 +16,7 @@ echo "unzipping the file"
 unzip /tmp/dispatch.zip &>>/tmp/catalogue.log
 status_check
 
+cd /home/roboshop
 mv dispatch-main dispatch && cd dispatch
 #go mod init dispatch
 #go get
