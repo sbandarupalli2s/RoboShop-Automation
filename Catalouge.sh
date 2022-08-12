@@ -9,10 +9,12 @@ echo "Downloading the code for catalogue"
 curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>/tmp/catalogue.log
 status_check
 
+cd /home/roboshop
 rm -rf catalogue
 echo "unzipping the file"
 unzip -o /tmp/catalogue.zip &>>/tmp/catalogue.log
 status_check
+
 cd /home/roboshop
 mv catalogue-main catalogue && cd /home/roboshop/catalogue
 
