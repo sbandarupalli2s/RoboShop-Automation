@@ -18,9 +18,9 @@ status_check
 
 cd /home/roboshop
 mv dispatch-main dispatch && cd dispatch
-#go mod init dispatch
-#go get
-#go build
+go mod init dispatch
+go get
+go build
 
 mv /home/roboshop/dispatch/systemd.service /etc/systemd/system/dispatch.service
 systemctl daemon-reload
