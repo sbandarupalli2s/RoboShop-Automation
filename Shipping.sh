@@ -30,3 +30,4 @@ status_check
 
 echo "starting the shipping service."
 systemctl start shipping && systemctl enable shipping &>>/tmp/shipping.log
+status_check
