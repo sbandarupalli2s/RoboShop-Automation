@@ -13,11 +13,11 @@ status_check
 
 rm -rf catalogue
 echo "unzipping the file"
-unzip /tmp/dispatch.zip &>>/tmp/catalogue.log
+unzip -o /tmp/dispatch.zip && cd /home/roboshop && mv dispatch-main dispatch && cd dispatch &>>/tmp/catalogue.log
 status_check
 
-cd /home/roboshop
-mv dispatch-main dispatch && cd dispatch
+#cd /home/roboshop
+#mv dispatch-main dispatch && cd dispatch
 
 echo "init"
 go mod init dispatch

@@ -14,7 +14,7 @@ Golang_install() {
 }
 
 NodeJS_install() {
-  echo "setting nodejs repos"
+  echo "Downloading nodejs repos"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/nodejs_installation.log
   status_check
 
