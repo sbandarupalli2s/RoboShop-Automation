@@ -23,8 +23,13 @@ curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongo
 status_check
 
 cd /tmp
-unzip mongodb.zip &>>/tmp/mongodb.log
-cd mongodb-main
-mongo < catalogue.js
-mongo < users.js
 
+echo "unzipping the file"
+unzip mongodb.zip &>>/tmp/mongodb.log
+status_check
+
+cd mongodb-main
+#mongo < catalogue.js
+#mongo < users.js
+
+echo "Done"
