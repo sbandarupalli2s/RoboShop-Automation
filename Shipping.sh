@@ -11,6 +11,8 @@ echo downloading the shipping code.
 curl -s -L -o /tmp/shipping.zip "https://github.com/roboshop-devops-project/shipping/archive/main.zip" &>>/tmp/shipping.log
 status_check
 
+rm -rf shipping
+
 echo unzipping..
 unzip -o /tmp/shipping.zip &>>/tmp/shipping.log
 status_check
