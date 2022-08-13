@@ -1,19 +1,29 @@
-#MongoDB
+source  Common.sh
 
-set -e
+echo "Downloading the mongodb repo."
+curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo &>>/tmp/mongodb.log
+status_check
 
-curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
+echo "Installing the mongodb."
+yum install -y mongodb-org &>>/tmp/mongodb.log
+status_check
 
-yum install -y mongodb-org
-systemctl enable mongod
-systemctl start mongod
+echo "starting the mongodb..."
+systemctl enable mongod && systemctl start mongod &>>/tmp/mongodb.log
+status_check
 
-systemctl restart mongod
+#Need to update the IP address
 
-curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
+echo "restarting the mongodb..."
+systemctl restart mongod &>>/tmp/mongodb.log
+status_check
+
+echo "downloading the Schema to be loaded for the application to work."
+curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>/tmp/mongodb.log
+status_check
 
 cd /tmp
-unzip mongodb.zip
+unzip mongodb.zip &>>/tmp/mongodb.log
 cd mongodb-main
 mongo < catalogue.js
 mongo < users.js
