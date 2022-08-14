@@ -13,7 +13,7 @@ status_check
 
 rm -rf catalogue
 echo "unzipping the file"
-unzip -o /tmp/dispatch.zip && cd /home/roboshop && mv dispatch-main dispatch && cd dispatch &>>/tmp/catalogue.log
+unzip -o /tmp/dispatch.zip && cd /home/roboshop && mv dispatch-main dispatch && cd dispatch &>>/tmp/dispatch.log
 status_check
 
 #cd /home/roboshop
@@ -24,7 +24,14 @@ go mod init dispatch
 go get
 go build
 
+echo " moving the systemd file to /etc/systemd/system/"
 mv /home/roboshop/dispatch/systemd.service /etc/systemd/system/dispatch.service
-systemctl daemon-reload
-systemctl enable dispatch
-systemctl start dispatch
+status_check
+
+echo "daemon-reloading.."
+systemctl daemon-reload &>>/tmp/dispatch.log
+status_check
+
+echo "stating the dispatch service "
+systemctl enable dispatch && systemctl start dispatch &>>/tmp/dispatch.log
+status_check
