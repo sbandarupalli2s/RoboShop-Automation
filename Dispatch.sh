@@ -11,7 +11,8 @@ echo "deleting the old content"
 rm -rf catalogue
 status_check
 
-rm -rf catalogue
+rm -rf dispatch
+
 echo "unzipping the file"
 unzip -o /tmp/dispatch.zip &>>/tmp/dispatch.log
 status_check
