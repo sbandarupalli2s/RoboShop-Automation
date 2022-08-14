@@ -18,7 +18,6 @@ echo $MYSQL_PASSWORD
 
 echo "alter user 'root'@'localhost' identified with mysql_native_password by '$MYSQL_PASSWORD';" | mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD}
 
-echo "updating ht e password by using global env variable MYSQL_PASSWORD"
 mysql -uroot -p$MYSQL_PASSWORD
 status_check
 
