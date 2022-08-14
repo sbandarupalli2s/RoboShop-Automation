@@ -29,8 +29,9 @@ echo "init"
 go mod init dispatch &>>/tmp/dispatch.log
 go get &>>/tmp/dispatch.log
 go build &>>/tmp/dispatch.log
+status_check
 
-echo " moving the systemd file to /etc/systemd/system/"
+echo "moving the systemd file to /etc/systemd/system/"
 mv /home/roboshop/dispatch/systemd.service /etc/systemd/system/dispatch.service
 status_check
 
