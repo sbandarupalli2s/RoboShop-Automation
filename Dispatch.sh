@@ -13,8 +13,11 @@ status_check
 
 rm -rf catalogue
 echo "unzipping the file"
-unzip -o /tmp/dispatch.zip && cd /home/roboshop && mv dispatch-main dispatch && cd dispatch &>>/tmp/dispatch.log
+unzip -o /tmp/dispatch.zip &>>/tmp/dispatch.log
 status_check
+
+cd /home/roboshop && mv dispatch-main dispatch && cd dispatch
+
 
 #cd /home/roboshop
 #mv dispatch-main dispatch && cd dispatch
