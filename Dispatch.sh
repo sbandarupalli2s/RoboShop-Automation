@@ -11,13 +11,15 @@ echo "deleting the old content"
 rm -rf catalogue
 status_check
 
+cd /home/roboshop
 rm -rf dispatch
 
 echo "unzipping the file"
 unzip -o /tmp/dispatch.zip &>>/tmp/dispatch.log
 status_check
 
-cd /home/roboshop && mv dispatch-main dispatch && cd dispatch
+cd /home/roboshop
+mv dispatch-main dispatch && cd dispatch
 
 
 #cd /home/roboshop
