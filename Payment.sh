@@ -16,7 +16,7 @@ cd /home/roboshop
 rm -rf payment
 
 echo "unzipping the payment.zip file"
-unzip -o /tmp/payment.zip
+unzip -o /tmp/payment.zip &>>/tmp/payment.log
 status_check
 
 mv payment-main payment
