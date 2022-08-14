@@ -26,9 +26,9 @@ mv dispatch-main dispatch && cd dispatch
 #mv dispatch-main dispatch && cd dispatch
 
 echo "init"
-go mod init dispatch
-go get
-go build
+go mod init dispatch &>>/tmp/dispatch.log
+go get &>>/tmp/dispatch.log
+go build &>>/tmp/dispatch.log
 
 echo " moving the systemd file to /etc/systemd/system/"
 mv /home/roboshop/dispatch/systemd.service /etc/systemd/system/dispatch.service
