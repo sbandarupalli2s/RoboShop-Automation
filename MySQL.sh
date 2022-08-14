@@ -8,14 +8,13 @@ echo "Installing mysql "
 yum install mysql-community-server -y &>>/tmp/mysql.log
 status_check
 
-echo " starting the mysql..."
+echo "starting the mysql..."
 systemctl enable mysqld && systemctl start mysqld &>>/tmp/mysql.log
 status_check
 
-echo " grep the default password "
+echo "grep the default password "
 DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
 echo $MYSQL_PASSWORD
-status_check
 
 echo "alter user 'root'@'localhost' identified with mysql_native_password by '$MYSQL_PASSWORD';" | mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD}
 
