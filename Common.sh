@@ -9,31 +9,26 @@ status_check() {
   fi
 }
 
-Golang_install() {
-  echo "installing golang...."
-  yum install golang -y &>>/tmp/golang.log
+
+App_Clean() {
+  echo "Deleting the old application content"
+  rm -rf ${COMPONENT} &>>/tmp/${COMPONENT}.log
+  status_check
+
+  echo "Unzipping/Extract Application Archive"
+  unzip -o /tmp/${COMPONENT}.zip &>>/tmp/${COMPONENT}.log
+  mv ${COMPONENT}-main ${COMPONENT} && cd ${COMPONENT} &>>/tmp/${COMPONENT}.log
   status_check
 }
 
-NodeJS_install() {
-  echo "Downloading nodejs repos"
-  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/nodejs_installation.log
+Download() {
+  echo "Downloading ${COMPONENT} content"
+  curl -s -L -o /tmp/cart.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" && cd /home/roboshop &>>/tmp/${COMPONENT}.log
   status_check
+  App_Clean
 
-  echo "Installing NodeJS"
-  yum install nodejs -y &>>/tmp/nodejs.log
-  status_check
 }
 
-Nginx_install() {
-  echo "Installing nginx..."
-  yum install nginx -y &>>/tmp/nginx_installation.log
-  status_check
-
-  echo " starting nginx..."
-  systemctl enable nginx && systemctl start nginx &>>/tmp/nginx_installation.log
-  status_check
-}
 
 AddUsr() {
   echo "Checking user exists or not"
@@ -49,10 +44,55 @@ AddUsr() {
 }
 
 
+SYSTEMD() {
+  echo Update SystemD Config
+  sed -i -e 's/MONGO_DNSNAME/mongodb-dev.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb-dev.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis-dev.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue-dev.roboshop.internal/' -e 's/AMQPHOST/rabbitmq-dev.roboshop.internal/' -e 's/CARTHOST/cart-dev.roboshop.internal/' -e 's/USERHOST/user-dev.roboshop.internal/' -e 's/CARTENDPOINT/cart-dev.roboshop.internal/' -e 's/DBHOST/mysql-dev.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service &>>${LOG}
+  StatusCheck
+
+  echo Configuring ${COMPONENT} SystemD Service
+  mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service &>>${LOG} && systemctl daemon-reload &>>${LOG}
+  StatusCheck
+
+  echo Starting ${COMPONENT} Service
+  systemctl restart ${COMPONENT} &>>${LOG} && systemctl enable ${COMPONENT} &>>${LOG}
+  StatusCheck
+}
+
 ##### this is what i refer from my classes.
 
-DOWNLOAD() {
-  echo Downloading ${COMPONENT} Application Content
-  curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>${LOG}
+NodeJS_install() {
+  echo "Setting nodejs repos"
+  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/nodejs.log
+  status_check
+
+  echo "Installing NodeJS"
+  yum install nodejs -y &>>/tmp/nodejs.log
+  status_check
+
+  AddUsr
+  Download
+  App_Clean
+
+  echo "installing NodeJS dependencies"
+  npm install &>>/tmp/${COMPONENT}.log
+  status_check
+
+  SYSTEMD
+}
+
+
+Nginx_install() {
+  echo "Installing nginx..."
+  yum install nginx -y &>>/tmp/nginx_installation.log
+  status_check
+
+  echo " starting nginx..."
+  systemctl enable nginx && systemctl start nginx &>>/tmp/nginx_installation.log
+  status_check
+}
+
+Golang_install() {
+  echo "installing golang...."
+  yum install golang -y &>>/tmp/golang.log
   status_check
 }
