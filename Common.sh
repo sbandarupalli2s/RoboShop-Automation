@@ -1,3 +1,5 @@
+# This Script is to keep the code DRY by using functions.
+
 status_check() {
   if [ $? -eq 0 ]; then
     echo -e "\e[32mSUCCESS\e[0m"
@@ -44,4 +46,11 @@ AddUsr() {
     useradd roboshop &>>/tmp/addusr.log
     status_check
   fi
+}
+
+
+DOWNLOAD() {
+  echo Downloading ${COMPONENT} Application Content
+  curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>${LOG}
+  status_check
 }

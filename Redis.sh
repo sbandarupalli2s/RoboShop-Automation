@@ -1,3 +1,5 @@
+COMPONENT=redis
+
 source Common.sh
 
 echo "Downloading the source code..."

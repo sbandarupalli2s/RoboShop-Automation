@@ -1,3 +1,6 @@
+
+COMPONENT=payment
+
 source Common.sh
 
 echo " Installing the python3..."

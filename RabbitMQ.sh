@@ -1,6 +1,11 @@
-source Common.sh
+COMPONENT=rabbitmq
 
-sudo su -
+source Common.sh
+if [ -z "$APP_RABBITMQ_PASSWORD" ]; then
+  echo -e "\e[33m env variable APP_RABBITMQ_PASSWORD is needed\e[0m"
+  exit 1
+fi
+
 echo "Downloading the rabbitmq."
 yum install https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm -y &>>/tmp/rabbitmq.log
 status_check

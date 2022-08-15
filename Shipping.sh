@@ -1,3 +1,5 @@
+COMPONENT=shipping
+
 source Common.sh
 
 echo installing the maven

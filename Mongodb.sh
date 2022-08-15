@@ -1,3 +1,5 @@
+COMPONENT=mongodb
+
 source  Common.sh
 
 echo "Downloading the mongodb repo."

@@ -1,4 +1,6 @@
 #The frontend is the service in RobotShop to serve the web content over Nginx.
+COMPONENT=frontend
+
 source Common.sh
 
 echo "Installing nginx..."
