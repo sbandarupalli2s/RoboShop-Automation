@@ -12,6 +12,7 @@ status_check() {
 
 App_Clean() {
   echo "Deleting the old application content"
+  cd /home/roboshop
   rm -rf ${COMPONENT} &>>/tmp/${COMPONENT}.log
   status_check
 
