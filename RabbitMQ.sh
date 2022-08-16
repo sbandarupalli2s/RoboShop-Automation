@@ -6,12 +6,9 @@ if [ -z "$APP_RABBITMQ_PASSWORD" ]; then
   exit 1
 fi
 
-echo "Downloading the rabbitmq."
-yum install https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm -y &>>/tmp/rabbitmq.log
-status_check
 
-echo curl .....
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
+echo "Setup YUM Repos"
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash &>>/tmp/rabbitmq.log
 status_check
 
 echo "Installing the rabbitmq..."
@@ -22,14 +19,9 @@ echo "starting the rabbitmq"
 systemctl enable rabbitmq-server && systemctl start rabbitmq-server &>>/tmp/rabbitmq.log
 status_check
 
-echo "adding the rabbitmqctl user roboshop "
-rabbitmqctl add_user roboshop roboshop123
-status_check
-
-echo "setting the user tags.."
-rabbitmqctl set_user_tags roboshop administrator
-status_check
-
-secho "setting the permissions"
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
-status_check
+rabbitmqctl list_users | grep roboshop  &>>/tmp/rabbitmq.log
+if [ $? -ne 0 ]; then
+  echo Add App User in RabbitMQ
+  rabbitmqctl add_user roboshop ${APP_RABBITMQ_PASSWORD} &>>/tmp/rabbitmq.log && rabbitmqctl set_user_tags roboshop administrator &>>/tmp/rabbitmq.log && rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>/tmp/rabbitmq.log
+  status_check
+fi
