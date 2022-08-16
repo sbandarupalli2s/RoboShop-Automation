@@ -48,7 +48,7 @@ SYSTEMD() {
   status_check
 
   echo Configuring ${COMPONENT} SystemD Service
-  mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service &>>${LOG} && systemctl daemon-reload &>>${COMPONENT}.log
+  mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service &>>${COMPONENT}.log && systemctl daemon-reload &>>${COMPONENT}.log
   status_check
 
   echo Starting ${COMPONENT} Service
