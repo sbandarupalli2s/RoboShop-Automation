@@ -25,14 +25,14 @@ App_Clean() {
 
 Download() {
   echo "Downloading ${COMPONENT} content"
-  curl -s -L -o /tmp/${COMPONENT}t.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" && cd /home/roboshop &>>/tmp/${COMPONENT}.log
+  curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" && cd /home/roboshop &>>/tmp/${COMPONENT}.log
   status_check
 }
 
 
 AddUsr() {
   echo "Checking user exists or not"
-  id roboshop &>>/tmp/cart.log
+  id roboshop &>>/tmp/${COMPONENT}.log
   if [ $? -eq 0 ]; then
     echo "user already exists"
     status_check
@@ -70,8 +70,8 @@ NodeJS_install() {
   status_check
 
   AddUsr
-  App_Clean
   Download
+  App_Clean
 
 
   echo "installing NodeJS dependencies"
