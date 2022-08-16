@@ -19,6 +19,7 @@ App_Clean() {
   echo "Unzipping/Extract Application Archive"
   unzip -o /tmp/${COMPONENT}.zip &>>/tmp/${COMPONENT}.log
   status_check
+  echo "renaming the directory"
   mv ${COMPONENT}-main ${COMPONENT} && cd ${COMPONENT} &>>/tmp/${COMPONENT}.log
   status_check
 }
