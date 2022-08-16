@@ -52,7 +52,7 @@ SYSTEMD() {
   status_check
 
   echo Starting ${COMPONENT} Service
-  systemctl restart ${COMPONENT} &>>${LOG} && systemctl enable ${COMPONENT} &>>${COMPONENT}.log
+  systemctl restart ${COMPONENT} &>>${COMPONENT}.log && systemctl enable ${COMPONENT} &>>${COMPONENT}.log
   status_check
 }
 
