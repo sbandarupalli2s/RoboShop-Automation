@@ -25,7 +25,7 @@ App_Clean() {
 
 Download() {
   echo "Downloading ${COMPONENT} content"
-  curl -s -L -o /tmp/cart.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" && cd /home/roboshop &>>/tmp/${COMPONENT}.log
+  curl -s -L -o /tmp/${COMPONENT}t.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" && cd /home/roboshop &>>/tmp/${COMPONENT}.log
   status_check
 }
 
