@@ -70,8 +70,9 @@ NodeJS_install() {
   status_check
 
   AddUsr
-  Download
   App_Clean
+  Download
+
 
   echo "installing NodeJS dependencies"
   npm install &>>/tmp/${COMPONENT}.log
