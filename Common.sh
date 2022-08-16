@@ -17,6 +17,7 @@ App_Clean() {
 
   echo "Unzipping/Extract Application Archive"
   unzip -o /tmp/${COMPONENT}.zip &>>/tmp/${COMPONENT}.log
+  status_check
   mv ${COMPONENT}-main ${COMPONENT} && cd ${COMPONENT} &>>/tmp/${COMPONENT}.log
   status_check
 }
