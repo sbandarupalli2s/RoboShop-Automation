@@ -5,7 +5,7 @@ if [ -z "$APP_RABBITMQ_PASSWORD" ]; then
   echo -e "\e[33m env variable APP_RABBITMQ_PASSWORD is needed\e[0m"
   exit 1
 fi
-
+an
 
 echo "Setup YUM Repos"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash &>>/tmp/rabbitmq.log
